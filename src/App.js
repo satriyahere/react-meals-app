@@ -1,15 +1,20 @@
+import React, { useState } from 'react';
 import Cart from './components/Cart/Cart';
 import Header from './components/Layout/Header';
 import Meals from './components/Meals/Meals';
 function App() {
+  const [IsCartDisplayed, setIsCartDisplayed] = useState(false);
+  const toggleCartHandler = () => {
+    setIsCartDisplayed((prevState) => (prevState = !prevState));
+  };
   return (
-    <div>
-      <Cart />
-      <Header />
+    <React.Fragment>
+      {IsCartDisplayed && <Cart onToggleCart={toggleCartHandler} />}
+      <Header onToggleCart={toggleCartHandler} />
       <main>
         <Meals />
       </main>
-    </div>
+    </React.Fragment>
   );
 }
 
